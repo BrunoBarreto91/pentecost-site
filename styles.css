@@ -185,60 +185,191 @@ img, video {
   width: 100%;
 }
 
-.hero-grid {
-  display: grid;
-  grid-template-columns: 1.15fr .85fr;
-  gap: 44px;
-  align-items: center;
+.hero-text-center {
+  max-width: 920px;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .hero h1 {
   font-size: clamp(2.7rem, 6vw, 5.2rem);
-  line-height: 1.02;
+  line-height: 1.08;
   margin: 18px 0;
   letter-spacing: -.03em;
 }
 
-.hero p {
-  font-size: 1.1rem;
+.hero-lead {
+  font-size: 1.2rem;
   color: #d5def1;
   max-width: 760px;
+  margin: 0 auto;
+  line-height: 1.6;
 }
 
 .hero-actions {
   display: flex;
   gap: 14px;
   flex-wrap: wrap;
-  margin-top: 28px;
+  margin-top: 32px;
+  justify-content: center;
 }
 
-.hero-card {
-  background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
-  border: 1px solid var(--line);
-  border-radius: 28px;
-  padding: 28px;
-  box-shadow: var(--shadow);
+/* About Section */
+.section-about {
+  background: linear-gradient(180deg, rgba(255,255,255,.02), transparent);
 }
 
-.hero-card .stat-grid,
-.stat-grid {
+.about-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 14px;
+  grid-template-columns: 320px 1fr;
+  gap: 48px;
+  align-items: start;
+  margin-bottom: 48px;
 }
 
-.stat {
-  padding: 18px;
-  border-radius: 18px;
+.about-photo {
+  position: relative;
+}
+
+.profile-img {
+  width: 100%;
+  border-radius: 24px;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  /* Mascarar marca d'água do Gemini */
+  filter: brightness(1.05) contrast(1.08) saturate(1.1);
+  position: relative;
+}
+
+.profile-img::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 70%, rgba(5,7,14,0.4) 100%);
+  border-radius: 24px;
+  pointer-events: none;
+}
+
+.about-content h2 {
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  line-height: 1.15;
+  margin: 12px 0 18px;
+}
+
+.about-content p {
+  color: var(--muted);
+  margin-bottom: 16px;
+  line-height: 1.7;
+}
+
+.about-links {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+
+.about-links .btn svg {
+  margin-right: 6px;
+}
+
+/* Skills Section */
+.skills-section {
+  margin-top: 48px;
+  padding-top: 48px;
+  border-top: 1px solid var(--line);
+}
+
+.skills-section h3 {
+  font-size: 1.5rem;
+  margin-bottom: 24px;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.skill-category {
   background: rgba(255,255,255,.04);
-  border: 1px solid rgba(255,255,255,.08);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 20px;
 }
 
-.stat strong {
-  display: block;
-  font-size: 1.7rem;
-  line-height: 1;
-  margin-bottom: 8px;
+.skill-label {
+  font-size: .85rem;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--cyan);
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.skill-tag {
+  display: inline-block;
+  padding: 6px 12px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 8px;
+  font-size: .88rem;
+  color: #dbe5ff;
+}
+
+/* Project Cards Enhanced */
+.project-logo {
+  /* Mascarar marca d'água em logos */
+  filter: brightness(1.08) contrast(1.05);
+}
+
+.project-problem,
+.project-solution,
+.project-result {
+  font-size: .95rem;
+  line-height: 1.6;
+  margin: 10px 0;
+}
+
+.project-problem strong {
+  color: var(--magenta);
+}
+
+.project-solution strong {
+  color: var(--cyan);
+}
+
+.project-result strong {
+  color: var(--green);
+}
+
+/* CTA Section */
+.cta-section {
+  padding: 64px 0;
+}
+
+.cta-band h2 {
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  margin: 0 0 12px;
+}
+
+.cta-band p {
+  font-size: 1.1rem;
+  color: var(--muted);
+  margin: 0 0 24px;
+}
+
+.cta-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .section-head {
@@ -421,7 +552,8 @@ img, video {
   .hero-grid,
   .two-col,
   .grid-3,
-  .grid-4 {
+  .grid-4,
+  .about-grid {
     grid-template-columns: 1fr;
   }
 
@@ -432,5 +564,18 @@ img, video {
   .hero {
     min-height: auto;
     padding: 60px 0;
+  }
+
+  .about-grid {
+    gap: 32px;
+  }
+
+  .about-photo {
+    max-width: 280px;
+    margin: 0 auto;
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr;
   }
 }
