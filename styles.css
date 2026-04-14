@@ -231,23 +231,79 @@ img, video {
   position: relative;
 }
 
-.profile-img {
+/* Product Logo Badge — canto superior, pequeno */
+.product-logo-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+  padding: 8px 14px 8px 8px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+}
+
+.product-logo-badge img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  border-radius: 6px;
+}
+
+.product-logo-badge span {
+  font-size: .85rem;
+  font-weight: 600;
+  color: #dbe5ff;
+  letter-spacing: .04em;
+}
+
+/* Profile photo with fallback */
+.profile-img-wrap {
   width: 100%;
   border-radius: 24px;
+  overflow: hidden;
   border: 1px solid var(--line);
   box-shadow: var(--shadow);
-  /* Mascarar marca d'água do Gemini */
+  aspect-ratio: 4/5;
+  background: linear-gradient(135deg, rgba(0,229,255,.08), rgba(157,78,221,.08));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-img-wrap.no-photo::after {
+  content: 'BB';
+  font-size: 4rem;
+  font-weight: 800;
+  color: rgba(255,255,255,.15);
+  letter-spacing: -.02em;
+}
+
+.profile-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  /* Mascarar marca d'água do Gemini no canto inferior direito */
   filter: brightness(1.05) contrast(1.08) saturate(1.1);
+  display: block;
+}
+
+/* Overlay para cobrir marca d'água */
+.profile-img-wrap {
   position: relative;
 }
 
-.profile-img::after {
+.profile-img-wrap::after {
   content: '';
   position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, transparent 70%, rgba(5,7,14,0.4) 100%);
-  border-radius: 24px;
+  bottom: 0;
+  right: 0;
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(circle at bottom right, rgba(5,7,14,.95) 30%, transparent 70%);
   pointer-events: none;
+  border-radius: 0 0 24px 0;
 }
 
 .about-content h2 {
