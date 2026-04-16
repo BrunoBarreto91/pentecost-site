@@ -529,14 +529,23 @@ img, video {
   border: 1px solid var(--line);
   background: #02040a;
   box-shadow: var(--shadow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .video-shell video,
-.video-shell iframe,
-.video-shell img {
+.video-shell iframe {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.video-shell img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 40px;
 }
 
 .two-col {
